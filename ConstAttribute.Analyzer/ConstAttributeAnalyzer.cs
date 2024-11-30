@@ -10,17 +10,16 @@ namespace ConstAttribute.Analyzer
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class ConstAttributeAnalyzer : DiagnosticAnalyzer
     {
-        public const string DiagnosticID = "ConstAttributeAnalyzer";
-        private const string Category = "Usage";
+        public const string DiagnosticDescriptorID = "ConstAttributeAnalyzer";
 
         private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
-            DiagnosticID,
-            "Const Attribute Violation",
-            "Parameter '{0}' marked with [Const] cannot have its properties modified",
-            Category,
+            DiagnosticDescriptorID,
+            DiagnosticStringsLocator.DiagnosticRuleTitle,
+            DiagnosticStringsLocator.DiagnosticRuleMessageFormat,
+            DiagnosticStringsLocator.DiagnosticDescriptorMessageCategory,
             DiagnosticSeverity.Error,
             isEnabledByDefault: true,
-            description: "Prevents modification of parameters marked with [Const] attribute.");
+            DiagnosticStringsLocator.DiagnosticRuleDescription);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
             => ImmutableArray.Create(Rule);

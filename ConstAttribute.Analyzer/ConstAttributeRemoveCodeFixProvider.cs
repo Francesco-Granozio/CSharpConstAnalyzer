@@ -16,7 +16,7 @@ namespace ConstAttribute.Analyzer
     public class ConstAttributeCodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
-            => ImmutableArray.Create(ConstAttributeAnalyzer.DiagnosticID);
+            => ImmutableArray.Create(ConstAttributeAnalyzer.DiagnosticDescriptorID);
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
@@ -60,11 +60,11 @@ namespace ConstAttribute.Analyzer
             ParameterSyntax parameterSyntax = methodDeclaration.ParameterList.Parameters
                 .FirstOrDefault(p => p.AttributeLists
                     .SelectMany(al => al.Attributes)
-                    .Any(attr => attr.Name.ToString() == "Const"));
+                    .Any(attr => attr.Name.ToString() == DiagnosticStringsLocator.ConstAttributeShortName));
 
             if (parameterSyntax == null)
             {
-                System.Diagnostics.Debug.WriteLine("Parameter with [Const] not found.");
+                System.Diagnostics.Debug.WriteLine($"Parameter with [{DiagnosticStringsLocator.ConstAttributeShortName}] not found.");
                 return;
             }
 
@@ -73,7 +73,7 @@ namespace ConstAttribute.Analyzer
             // Registro il CodeFix per rimuovere l'attributo [Const]
             context.RegisterCodeFix(
                 CodeAction.Create(
-                    "Remove [Const] attribute",
+                    DiagnosticStringsLocator.CodeFixTitle,
                     c => RemoveConstAttributeAsync(document, parameterSyntax, c),
                     nameof(ConstAttributeCodeFixProvider)),
                 diagnostic);

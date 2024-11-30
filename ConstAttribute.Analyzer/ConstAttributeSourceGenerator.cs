@@ -8,12 +8,7 @@ namespace ConstAttribute.Analyzer
     [Generator]
     public class ConstAttributeSourceGenerator : IIncrementalGenerator
     {
-        private static readonly string ConstAttributeName = nameof(ConstAttribute);
         public const string DiagnosticDescriptorID = "CONST001";
-        public const string DiagnosticDescriptorTitle = "Const Parameter Modification";
-        public const string DiagnosticDescriptorMessageFormat = "Cannot modify properties of parameter '{0}' marked with [Const]";
-        public const string DiagnosticDescriptorMessageCategory = "Usage";
-
 
 
         public void Initialize(IncrementalGeneratorInitializationContext context)
@@ -48,9 +43,9 @@ namespace ConstAttribute.Analyzer
                     Diagnostic error = Diagnostic.Create(
                         new DiagnosticDescriptor(
                             DiagnosticDescriptorID,
-                            DiagnosticDescriptorTitle,
-                            DiagnosticDescriptorMessageFormat,
-                            DiagnosticDescriptorMessageCategory,
+                            DiagnosticStringsLocator.DiagnosticDescriptorTitle,
+                            DiagnosticStringsLocator.DiagnosticDescriptorMessageFormat,
+                            DiagnosticStringsLocator.DiagnosticDescriptorMessageCategory,
                             DiagnosticSeverity.Error,
                             isEnabledByDefault: true),
                         modification.Location,
@@ -65,7 +60,7 @@ namespace ConstAttribute.Analyzer
         {
             ISymbol parameterSymbol = semanticModel.GetDeclaredSymbol(parameter);
             return parameterSymbol?.GetAttributes()
-                .Any(attr => attr.AttributeClass?.Name == ConstAttributeName) ?? false;
+                .Any(attr => attr.AttributeClass?.Name == DiagnosticStringsLocator.ConstAttributeName) ?? false;
         }
 
         private List<(Location Location, string ParameterName)> FindPropertyModifications(

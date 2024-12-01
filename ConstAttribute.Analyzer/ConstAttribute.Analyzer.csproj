@@ -2,6 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>{CEDF40F9-DEC3-4C44-A402-403E5F2A0DD3}</ProjectGuid>
     <TargetFramework>net472</TargetFramework>
+	<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <AssemblyTitle>ConstAttribute.Analyzer</AssemblyTitle>
     <Product>ConstAttribute.Analyzer</Product>
     <Copyright>Copyright ©  2024</Copyright>

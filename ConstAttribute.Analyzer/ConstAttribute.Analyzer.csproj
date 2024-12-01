@@ -7,8 +7,10 @@
     <Product>ConstAttribute.Analyzer</Product>
     <Copyright>Copyright ©  2024</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.3</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<IncludeBuildOutput>false</IncludeBuildOutput>
+	<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <Title>ConstAttributeAnalyzer</Title>
     <Authors>Francesco Granozio</Authors>
     <Description>ConstAttributeAnalyzer is a NuGet package that provides a Roslyn analyzer and code fix for the C# language. 
@@ -23,16 +25,17 @@ ensuring that the properties of objects passed as parameters are not changed.</D
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-	<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.11.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.11.0" />
-    <PackageReference Include="System.Composition.TypedParts" Version="8.0.0" />
-    <PackageReference Include="System.Reflection.Metadata" Version="8.0.0" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
-  </ItemGroup>
+
+	<ItemGroup>
+		<None Update="tools\*.ps1"
+					CopyToOutputDirectory="Always"
+					Pack="true"
+					PackagePath="" />
+		<None Include="$(OutputPath)\$(AssemblyName).dll"
+						Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.11.0" />
+	</ItemGroup>
 </Project>

@@ -2,7 +2,9 @@
 
 namespace ConstAttribute.Analyzer
 {
-    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false)]
-    public class ConstAttribute : Attribute { }
+    [AttributeUsage(AttributeTargets.Parameter, Inherited = false, AllowMultiple = false)]
+    public sealed class ConstAttribute : Attribute
+    {
+    }
 
 }

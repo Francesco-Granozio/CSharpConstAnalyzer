@@ -1,12 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{CEDF40F9-DEC3-4C44-A402-403E5F2A0DD3}</ProjectGuid>
-    <TargetFramework>net472</TargetFramework>
+	<TargetFramework>netstandard2.0</TargetFramework>
 	<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <AssemblyTitle>ConstAttribute.Analyzer</AssemblyTitle>
     <Product>ConstAttribute.Analyzer</Product>
     <Copyright>Copyright ©  2024</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
+    <Version>1.0.0.0</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>ConstAttributeAnalyzer</Title>
+    <Authors>Francesco Granozio</Authors>
+    <Description>ConstAttributeAnalyzer is a NuGet package that provides a Roslyn analyzer and code fix for the C# language. 
+The package implements an advanced analysis for parameters annotated with the [Const] attribute, 
+ensuring that the properties of objects passed as parameters are not changed.</Description>
+    <PackageProjectUrl>https://github.com/Francesco-Granozio/CSharpConstAnalyzer</PackageProjectUrl>
+    <PackageTags>const;attrbute;parameter;constant;analyzer</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -19,19 +28,11 @@
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" />
+	<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.11.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.11.0" />
     <PackageReference Include="System.Composition.TypedParts" Version="8.0.0" />
     <PackageReference Include="System.Reflection.Metadata" Version="8.0.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Runtime" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
   </ItemGroup>
 </Project>

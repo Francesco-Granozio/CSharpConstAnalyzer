@@ -58,7 +58,7 @@ public static class Program
             GeneratorDriverRunResult results = driver.GetRunResult();
 
             // Controllo che ci sia almeno un errore con ID "CONST001"
-            Assert.IsTrue(results.Diagnostics.Any(d => d.Id == ConstAttributeSourceGenerator.DiagnosticDescriptorID), 
+            Assert.IsTrue(results.Diagnostics.Any(d => d.Id == ConstAttributeSourceGenerator.DiagnosticDescriptorID),
                 $"Expected diagnostic '{ConstAttributeSourceGenerator.DiagnosticDescriptorID}' was not reported.");
         }
 
